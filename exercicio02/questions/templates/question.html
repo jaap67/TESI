@@ -1,0 +1,38 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>Avaliação</title>
+	<link rel="stylesheet" type="text/css" href="{% static  'bootstrap/css/bootstrap.min.css' %}">
+
+</head>
+<body>
+	<div class="panel panel-default">
+	  	<!-- Default panel contents -->
+	  	<div class="panel-heading">Alternativas</div>
+	  	<div class="panel-body">
+	    	<p>{{ result.question_text }}</p>
+	  	</div>
+		  	<!-- Table -->
+		  	<table class="table">
+		    	<tr>
+		    		<th>Choices</th>
+		    		<th>Votes</th>
+		    		<th>Percent</th>
+		    	</tr>
+		    	{% if  result.choices %}
+		    		{% for choice in result.choices.all %}
+		    			<tr>
+			    			<td>{{ choice.choice_text }}</td>
+			    			<td>{{ choice.votes }}</td>
+			    			<td>{{ choice.percent }}</td>
+		    			</tr>
+		    		{% endfor %}
+		    	{% else %}
+		    		<td>Nenhuma alternativa cadastrada</td>
+		    	{% endif %}
+		  	</table>
+	</div>
+</body>
+</html>

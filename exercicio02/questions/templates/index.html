@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>Avaliação</title>
+	<link rel="stylesheet" type="text/css" href="{% static  'bootstrap/css/bootstrap.min.css' %}">
+
+</head>
+<body>
+	<div class="panel panel-default">
+	  	<!-- Default panel contents -->
+	  	<div class="panel-heading">TESI</div>
+	  	<div class="panel-body">
+	    	<p>Exercício 02</p>
+	  	</div>
+		  	<!-- Table -->
+		  	<ul class="list-group">
+                <li>
+                    <a href="{% url 'question_01' %}">Question 01</a>
+		    	</li>
+                <li>
+                    <a href="{% url 'question_02' %}">Question 02</a>
+		    	</li>
+                <li>
+                    <a href="{% url 'question_03' %}">Question 03</a>
+		    	</li>
+                 <li>
+                    <a href="{% url 'question_04' %}">Question 04</a>
+		    	</li>
+                <li>
+                    <a href="{% url 'question_05' %}">Question 05</a>
+		    	</li>
+		  	</ul>
+	</div>
+</body>
+</html>

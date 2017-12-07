@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>Avaliação</title>
+	<link rel="stylesheet" type="text/css" href="{% static  'bootstrap/css/bootstrap.min.css' %}">
+
+</head>
+<body>
+	<div class="panel panel-default">
+	  	<!-- Default panel contents -->
+	  	<div class="panel-heading">Question 02</div>
+	  	<div class="panel-body">
+	  	</div>
+		  	<!-- Table -->
+		  	<table class="table">
+		    	<tr>
+		    		<th>Título</th>
+		    		<th>Acumulado semanda</th>
+		    		<th>Total acumulado</th>
+                    <th>Semanas</th>
+		    	</tr>
+		    	{% if  data %}
+		    		{% for dado in data %}
+		    			<tr>
+			    			<td>{{ dado.title }}</td>
+                            <td>{{ dado.weekend }}</td>
+                            <td>{{ dado.gross }}</td>
+                            <td>{{ dado.weeks }}</td>
+		    			</tr>
+		    		{% endfor %}
+		    	{% else %}
+		    		<td>Nenhum dado encontrado</td>
+		    	{% endif %}
+		  	</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>Avaliação</title>
+	<link rel="stylesheet" type="text/css" href="{% static  'bootstrap/css/bootstrap.min.css' %}">
+
+</head>
+<body>
+	<div class="panel panel-default">
+	  	<!-- Default panel contents -->
+	  	<div class="panel-heading">Question 03</div>
+	  	<div class="panel-body">
+	  	</div>
+		  	<!-- Table -->
+		  	<table class="table">
+		    	<tr>
+		    		<th>Localidade</th>
+		    		<th>Temperatura</th>
+		    		<th>Condição</th>
+                    <th>Sensação</th>
+                    <th>Humidade</th>
+                    <th>Pressão</th>
+                    <th>Vento</th>
+                    <th>Atualização</th>
+		    	</tr>
+		    	{% if  data %}
+		    		{% for dado in data.all %}
+		    			<tr>
+			    			<td>{{ dado.localidade }}</td>
+                            <td>{{ dado.temperatura }}</td>
+                            <td>{{ dado.condicao }}</td>
+                            <td>{{ dado.sensacao }}</td>
+                            <td>{{ dado.humidade }}</td>
+                            <td>{{ dado.pressao }}</td>
+                            <td>{{ dado.vento }}</td>
+                            <td>{{ dado.atualizacao }}</td>
+		    			</tr>
+		    		{% endfor %}
+		    	{% else %}
+		    		<td>Nenhum dado encontrado</td>
+		    	{% endif %}
+		  	</table>
+	</div>
+</body>
+</html>

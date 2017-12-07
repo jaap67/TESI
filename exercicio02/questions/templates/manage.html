@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8">
+	<title>Avaliação</title>
+	<link rel="stylesheet" type="text/css" href="{% static  'bootstrap/css/bootstrap.min.css' %}">
+
+</head>
+<body>
+	<div class="panel panel-default">
+	  	<!-- Default panel contents -->
+	  	<div class="panel-heading">Alternativas</div>
+	  	<div class="panel-body">
+	    	<p>{{ question.question_text }}</p>
+	    	<p>Status</p>
+	    	{% if question.closed %}
+	    		<p><a href="{% url 'change' question.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Closed</a></p>
+	    	{% else %}
+	    		<p><a href="{% url 'change' question.id %}" class="btn btn-success" onclick="return confirm('Are you sure?')">Opened</a></p>
+	    	{% endif %}
+	  	</div>
+
+		  	<!-- Table -->
+		  	<table class="table">
+		    	<tr>
+		    		<th>Choices</th>
+		    		<th>Votes</th>
+		    		<th>Percent</th>
+		    		<th>Option</th>
+		    	</tr>
+		    	{% if  question.choices %}
+		    		{% for choice in question.choices.all %}
+		    			<tr>
+			    			<td>{{ choice.choice_text }}</td>
+			    			<td>{{ choice.votes }}</td>
+			    			<td>{{ choice.percent }}</td>
+			    			<td><a href="{% url 'remove' question.id choice.id %}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Remove</a></td>
+		    			</tr>
+		    		{% endfor %}
+		    	{% else %}
+		    		<td>Nenhuma alternativa cadastrada</td>
+		    	{% endif %}
+		  	</table>
+	</div>
+
+	<div class="panel panel-default">
+	  	<!-- Default panel contents -->
+	  	<div class="panel-heading">Alternativas não associadas</div>
+	  	<div class="panel-body">
+	    	<p><h3>Clique no botão ( ADD )  para adicionar a alternativa há esta pergunta.</h3></p>
+	  	</div>
+
+		  	<!-- Table -->
+		  	<table class="table">
+		    	<tr>
+		    		<th>Choices</th>
+		    		<th>Votes</th>
+		    		<th>Option</th>
+		    	</tr>
+		    	{% if choices %}
+		    		{% for choice in choices.all %}
+		    			{% if choice.question == null %}
+			    			<tr>
+			    				<td>{{ choice.choice_text }}</td>
+				    			<td>{{ choice.votes }}</td>
+				    			<td><a href="{% url 'addchoice' question.id choice.id %}" class="btn btn-success" onclick="return confirm('Are you sure?')">ADD</a></td>
+				    		</tr>
+		    			{% endif %}
+		    		{% endfor %}
+		    	{% else %}
+		    		<td>Não há opções sem estar atrelada a perguntas.</td>
+		    	{% endif %}
+		  	</table>
+	</div>
+</body>
+</html>
